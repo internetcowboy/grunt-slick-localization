@@ -25,7 +25,7 @@ In your project's Gruntfile, add a section named `slick_localization` to the dat
 
 This project will combine html files with json data models. Once combined, it will output directories with all templates within them.
 
-This plugin is used in combination with the assemble plugin. Assenmble takes handlebar templates and code and generates html files. Handlebars uses a format that looks like {{ sometag }} . Since we need to use assemble first we need to put our localized strings in the html in a different way. Thus, you will see below the templates string usage of [[ sometag ]] .
+This plugin is used in combination with the assemble plugin. Assemble takes handlebar templates and code and generates html files. Handlebars uses a format that looks like {{ sometag }} . Since we need to use assemble first we need to put our localized strings in the html in a different way. Thus, you will see below the templates string usage of [[ sometag ]] . You must also have the dependency of the 'grunt-string-replace' plugin or this entire thing is pretty useless.
 
 ##Example of json template in directory 'localization_data':
 
