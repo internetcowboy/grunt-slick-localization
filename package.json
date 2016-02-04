@@ -1,0 +1,42 @@
+{
+  "name": "grunt-slick-localization",
+  "description": "This plugin was a base of the grunt-swig-localization. It was modified to work in combination with this custom localization build to create seperate directories based on generated handlebar templates.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/cpangell/grunt-slick-localization",
+  "author": {
+    "name": "Codin Pangell",
+    "email": "privateparty@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cpangell/grunt-slick-localization.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cpangell/grunt-slick-localization/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/cpangell/grunt-slick-localization/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "keywords": [
+    "gruntplugin",
+    "localization"
+  ],
+  "dependencies": {
+    "swig": "~> 1.1.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
