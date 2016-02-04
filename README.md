@@ -22,68 +22,54 @@ grunt.loadNpmTasks('grunt-slick-localization');
 ### Overview
 In your project's Gruntfile, add a section named `slick_localization` to the data object passed into `grunt.initConfig()`.
 
-```js
-grunt.initConfig({
-  slick_localization: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-});
-```
 
-### Options
+This project will combine html files with json data models. Once combined, it will output directories with all templates within them.
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+This plugin is used in combination with the assemble plugin. Assenmble takes handlebar templates and code and generates html files. Handlebars uses a format that looks like {{ sometag }} . Since we need to use assemble first we need to put our localized strings in the html in a different way. Thus, you will see below the templates string usage of [[ sometag ]] .
 
-A string value that is used to do something with whatever.
+##Example of json template in directory 'localization_data':
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+  about--en.json
+  {
+    "about": "about"
+  }
 
-A string value that is used to do something else with whatever else.
+  about--span.json
+  {
+    "about": "sobre"
+  }
 
-### Usage Examples
+  index--en.json
+  {
+    "hello": "hello"
+  }
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+  index--span.json
+  {
+    "hello": "hola"
+  }
 
-```js
-grunt.initConfig({
-  slick_localization: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+##Example of html template in directory 'dist/_core':
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+  index.html
+    <h1>[[ hello ]]</h1>
+
+  about.html
+    <h1>[[ about ]]</h1>
+
 
 ```js
 grunt.initConfig({
   slick_localization: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+      main: {
+        src: ['dist/_core/*.html', 'localization_data/*.json'],
+              outputDir: 'dist/builds/', //output of the files and folders
+              templateDir: 'dist/_core/', //directory where the html templates are located
+              templateDataDir: 'localization_data', //directory where the template data exists.
+              localizationBuilds: ['en','fr','span'] //a data array of the directories the system will generate all template files to.
+      }
+  }
 });
 ```
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
-## Release History
-_(Nothing yet)_

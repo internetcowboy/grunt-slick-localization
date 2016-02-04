@@ -14,7 +14,7 @@ module.exports = function(grunt) {
   var swig = require('swig');
   var path = require('path');
 
-  grunt.registerMultiTask('swigLocalization', 'swig templater', function(taskConfig) {
+  grunt.registerMultiTask('slick_localization', 'swig templater', function(taskConfig) {
       var outputDir = process.cwd() + '/' + this.data.outputDir;
       var templateDir = process.cwd() + '/' + this.data.templateDir;
       var localizationBuilds = this.data.localizationBuilds;
