@@ -1,42 +1,79 @@
 {
-  "name": "grunt-slick-localization",
-  "description": "This plugin was a base of the grunt-swig-localization. It was modified to work in combination with this custom localization build to create seperate directories based on generated handlebar templates.",
-  "version": "0.4.0",
-  "homepage": "https://github.com/cpangell/grunt-slick-localization",
-  "author": {
-    "name": "Codin Pangell",
-    "email": "privateparty@gmail.com"
+  "_args": [
+    [
+      "grunt-slick-localization@github:internetcowboy/grunt-slick-localization",
+      "/Applications/MAMP/htdocs/development/Nike_HTMiD/htmid-web-localized"
+    ]
+  ],
+  "_from": "internetcowboy/grunt-slick-localization",
+  "_id": "grunt-slick-localization@0.4.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/grunt-slick-localization",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/internetcowboy/grunt-slick-localization/master/package.json",
+      "gitUrl": "git://github.com/internetcowboy/grunt-slick-localization.git",
+      "httpsUrl": "git+https://github.com/internetcowboy/grunt-slick-localization.git",
+      "shortcut": "github:internetcowboy/grunt-slick-localization",
+      "ssh": "git@github.com:internetcowboy/grunt-slick-localization.git",
+      "sshUrl": "git+ssh://git@github.com/internetcowboy/grunt-slick-localization.git",
+      "type": "github"
+    },
+    "name": "grunt-slick-localization",
+    "raw": "grunt-slick-localization@github:internetcowboy/grunt-slick-localization",
+    "rawSpec": "github:internetcowboy/grunt-slick-localization",
+    "scope": null,
+    "spec": "github:internetcowboy/grunt-slick-localization",
+    "type": "hosted"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/cpangell/grunt-slick-localization.git"
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/internetcowboy/grunt-slick-localization.git#cafc49e23cbaecbe8e4f21a29633d5564ab5d173",
+  "_shasum": "b1e6996e8f4ff0c2c19b2817125fadbe69ca8f93",
+  "_shrinkwrap": null,
+  "_spec": "grunt-slick-localization@github:internetcowboy/grunt-slick-localization",
+  "_where": "/Applications/MAMP/htdocs/development/Nike_HTMiD/htmid-web-localized",
+  "author": {
+    "email": "privateparty@gmail.com",
+    "name": "Codin Pangell"
   },
   "bugs": {
     "url": "https://github.com/cpangell/grunt-slick-localization/issues"
   },
+  "dependencies": {
+    "swig": "~> 1.1.0"
+  },
+  "description": "This plugin was a base of the grunt-swig-localization. It was modified to work in combination with this custom localization build to create seperate directories based on generated handlebar templates.",
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "gitHead": "cafc49e23cbaecbe8e4f21a29633d5564ab5d173",
+  "homepage": "https://github.com/cpangell/grunt-slick-localization",
+  "keywords": [
+    "gruntplugin"
+  ],
   "licenses": [
     {
       "type": "MIT",
       "url": "https://github.com/cpangell/grunt-slick-localization/blob/master/LICENSE-MIT"
     }
   ],
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "keywords": [
-    "gruntplugin",
-    "localization"
-  ],
-  "dependencies": {
-    "swig": "~> 1.1.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5"
-  },
+  "name": "grunt-slick-localization",
+  "optionalDependencies": {},
   "peerDependencies": {
     "grunt": "~0.4.5"
   },
-  "keywords": [
-    "gruntplugin"
-  ]
+  "readme": "# grunt-slick-localization\n\n> This plugin was a base of the grunt-swig-localization. It was modified to work in combination with this custom localization build to create seperate directories based on generated handlebar templates.\n\n## Getting Started\nThis plugin requires Grunt `~0.4.5`\n\nIf you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:\n\n```shell\nnpm install grunt-slick-localization --save-dev\n```\n\nOnce the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:\n\n```js\ngrunt.loadNpmTasks('grunt-slick-localization');\n```\n\n## The \"slick_localization\" task\n\n### Overview\nIn your project's Gruntfile, add a section named `slick_localization` to the data object passed into `grunt.initConfig()`.\n\n\nThis project will combine html files with json data models. Once combined, it will output directories with all templates within them.\n\nThis plugin is used in combination with the assemble plugin. Assemble takes handlebar templates and code and generates html files. Handlebars uses a format that looks like {{ sometag }} . Since we need to use assemble first we need to put our localized strings in the html in a different way. Thus, you will see below the templates string usage of [[ sometag ]] . You must also have the dependency of the 'grunt-string-replace' plugin or this entire thing is pretty useless.\n\n##Example of json template in directory 'localization_data':\n\n  about--en.json\n  {\n    \"about\": \"about\"\n  }\n\n  about--span.json\n  {\n    \"about\": \"sobre\"\n  }\n\n  index--en.json\n  {\n    \"hello\": \"hello\"\n  }\n\n  index--span.json\n  {\n    \"hello\": \"hola\"\n  }\n\n##Example of html template in directory 'dist/_core':\n\n  index.html\n    <h1>[[ hello ]]</h1>\n\n  about.html\n    <h1>[[ about ]]</h1>\n\n\n```js\ngrunt.initConfig({\n  slick_localization: {\n      main: {\n        src: ['dist/_core/*.html', 'localization_data/*.json'],\n              outputDir: 'dist/builds/', //output of the files and folders\n              templateDir: 'dist/_core/', //directory where the html templates are located\n              templateDataDir: 'localization_data', //directory where the template data exists.\n              localizationBuilds: ['en','fr','span'] //a data array of the directories the system will generate all template files to.\n      }\n  }\n});\n```\n\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cpangell/grunt-slick-localization.git"
+  },
+  "version": "0.4.0"
 }
