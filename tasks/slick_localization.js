@@ -39,15 +39,14 @@ module.exports = function(grunt) {
                 var originalFile = file;
 
                 //parse string for 
-                var languageDirectory = fileName;         // en_gb
+                var languageDirectory = fileName;           // en_gb
                 var tmpfile = file.split("--")[0];
-                tmpfile = tmpfile.split("/")[1];      // index
+                tmpfile = tmpfile.split("/")[1];            // index
 
-                 
                 var country = file.split("--")[1];
                 if (country.indexOf(":")>0) {
                   //follows standard at:en_gb structure
-                  country = country.split(":")[0] + "/";      // en/
+                  country = country.split(":")[0] + "/";    // en/
                 } else {
                   //follows a en_gb structure, which is a default language document.
                   country = "";
@@ -58,13 +57,20 @@ module.exports = function(grunt) {
                 //reset variable for file
                 file = tmpfile; // index
 
+                //determine path of language
+                var lang = "";
                 if(languageDirectory && file && country) {
-                  var lang = country + languageDirectory;
-                  fileName = file;
-                  templateData[fileName] = templateData[fileName] || {};
-                  var langObject = grunt.file.readJSON(originalFile);
-                  templateData[fileName][lang] = langObject;
+                  lang = country + languageDirectory;
+                } else {
+                  lang = languageDirectory;
                 }
+
+                //save to structure.
+                fileName = file;
+                templateData[fileName] = templateData[fileName] || {};
+                var langObject = grunt.file.readJSON(originalFile);
+                templateData[fileName][lang] = langObject;
+
               }
 
           }
@@ -76,17 +82,24 @@ module.exports = function(grunt) {
 
           // Generate the html files and output them to the dist directory
           for(var fileName in templates) {
+
               var template = templates[fileName];
               var lang = localizationBuilds[loc];
-              var data = templateData[fileName][lang];
+              var data = null;
+              
+              if (templateData[fileName][lang]){
+                data = templateData[fileName][lang];
+              }
 
               //is the data missing? If so, find the template that for this countries language.
+              var _isTemplate = false;
               if (!data) {
+
                   /*
                     Example of files that override the default en_gb.
                     index--at/en_gb.json
                     index--cz/en_gb.json
-                    index--en_gb.json
+                    index--en_gb.json (this would be the template file for all en_gb localizations)
                   */
 
                   //find the default language for this page.
@@ -97,10 +110,12 @@ module.exports = function(grunt) {
                   } else {
                     //this is a template file (en_gb)
                   }
+              } else {
+                _isTemplate=true;
               }
               
-              //if the 'data' variable is undefined at this point, then it is a template file. We don't need to save this.
-              if (data) {
+              //save this file out
+              if (!_isTemplate) {
                 var outputFile = outputDir + lang + '/' + template.outputFile + '.html';
                 grunt.file.write(outputFile, swig.renderFile(template.templateFile, data));
                 grunt.log.writeln('Generated localized file: ' + outputFile);
